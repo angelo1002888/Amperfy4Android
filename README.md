@@ -207,6 +207,23 @@ keytool -genkeypair \
 Never commit `keystore.properties`, `*.jks` or `*.keystore`. Keep a backup of the keystore:
 without it you cannot publish updates under the same signature.
 
+#### Releases built by CI
+
+Pushing a tag that starts with `v` (for example `v1.0.1`) runs
+`.github/workflows/release.yml`, which builds the release APK and publishes it on the
+GitHub Releases page together with a SHA-256 checksum. To have CI sign with the real
+release key, add four repository secrets (Settings → Secrets and variables → Actions):
+
+| Secret              | Value                                                   |
+|---------------------|---------------------------------------------------------|
+| `KEYSTORE_BASE64`   | the keystore file encoded with `base64 -w0 release.jks` |
+| `KEYSTORE_PASSWORD` | keystore (store) password                               |
+| `KEY_ALIAS`         | key alias                                               |
+| `KEY_PASSWORD`      | key password                                            |
+
+Without these secrets the workflow still runs but signs with the debug key and names the
+file `…-debugsigned.apk`; such builds are for testing only.
+
 ## Third-party notices
 
 - **Amperfy for iOS** by Maximilian Bauer (GPLv3): this project is a port of its
