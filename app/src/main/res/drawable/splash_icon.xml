@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  启动屏居中 Logo（对齐 iOS LaunchScreen.storyboard：Icon-monocolor 单色字形，
+  200pt 高 aspectFit 垂直居中于 systemBackground 之上）。
+  单色来源 AmperfyKit/Assets/Assets.xcassets/Icon-monocolor.imageset（黑字形原图），
+  明暗两态由 @color/splash_icon_tint 着色，对应该 imageset 的 universal/dark 双变体。
+
+  四边 inset 44dp：系统 splash 图标画布为 288dp，288 − 44×2 = 200dp，使系统阶段的位图边长
+  精确等于 Compose 复刻层 LaunchScreenOverlay 的 LOGO_SIZE（200dp）——两段 Logo 同尺寸同位置，
+  交接时不再有尺寸跳变（此前 28dp inset 得 232dp，交接瞬间字形缩约 14%，
+  是用户真机报「切换突兀」的主因之一，2026-08-13 修）；200dp 亦回归 iOS storyboard 的高 200 真值。
+  安全区核对：可视安全区为画布内切圆（直径 192dp），字形 bbox 约 73%×59%，
+  200dp 位图的可见字形 ≈146×118dp，仍落在该内切圆内。
+-->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="44dp"
+    android:insetTop="44dp"
+    android:insetRight="44dp"
+    android:insetBottom="44dp">
+
+    <!--
+      gravity 用默认的 fill（不写 center）：nodpi 位图按物理像素原样取用，
+      center 在高密度设备上会显得偏小、低密度设备上又会被裁切；
+      位图与 inset 后的绘制框同为正方形，fill 等比缩放不产生形变。
+    -->
+    <bitmap
+        android:src="@drawable/splash_logo"
+        android:tint="@color/splash_icon_tint" />
+</inset>

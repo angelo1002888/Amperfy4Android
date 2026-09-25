@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Amperfy</string>
+    
+    <!-- Library -->
+    <string name="library">Library</string>
+    <string name="artists">Artists</string>
+    <string name="albums">Albums</string>
+    <string name="songs">Songs</string>
+    <string name="playlists">Playlists</string>
+    <string name="recently_played">Recently Played</string>
+    
+    <!-- Player -->
+    <string name="now_playing">Now Playing</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    
+    <!-- Actions -->
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="more_options">More options</string>
+    <string name="add_to_playlist">Add to playlist</string>
+    <string name="add_to_queue">Add to queue</string>
+    <string name="download">Download</string>
+    
+    <!-- Messages -->
+    <string name="loading">Loading…</string>
+    <string name="error">Error</string>
+    <string name="no_songs">No songs found</string>
+    <string name="no_albums">No albums found</string>
+    <string name="no_artists">No artists found</string>
+    <string name="no_playlists">No playlists found</string>
+    
+    <!-- Settings -->
+    <string name="server_url">Server URL</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="sync_library">Sync Library</string>
+    <string name="offline_mode">Offline Mode</string>
+</resources>

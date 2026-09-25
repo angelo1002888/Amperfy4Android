@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 启动屏背景（浅色）：对齐 iOS LaunchScreen.storyboard 根视图 systemBackgroundColor —— 浅色为纯白 -->
+    <color name="splash_background">#FFFFFFFF</color>
+    <!-- 启动屏 Logo 着色（浅色）：对齐 iOS Icon-monocolor.imageset/Contents.json 的 universal 变体（黑字形） -->
+    <color name="splash_icon_tint">#FF000000</color>
+</resources>

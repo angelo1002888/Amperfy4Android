@@ -1,0 +1,2135 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5c6b91dacbd77d170552f48d5584616b",
+    "entities": [
+      {
+        "tableName": "account_scope",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, PRIMARY KEY(`account_id`))",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id"
+          ]
+        }
+      },
+      {
+        "tableName": "artist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `name` TEXT NOT NULL, `cover_art` TEXT, `starred_at` INTEGER, `rating` INTEGER NOT NULL, `search_key` TEXT NOT NULL, `section_key` TEXT NOT NULL, `sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "starredAt",
+            "columnName": "starred_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "section_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_artist_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_artist_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_artist_account_id_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_artist_account_id_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `sort_key`, `server_id`)"
+          },
+          {
+            "name": "index_artist_account_id_section_key_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "section_key",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_artist_account_id_section_key_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `section_key`, `sort_key`, `server_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "album",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `name` TEXT NOT NULL, `artist_id` TEXT, `artist_name` TEXT NOT NULL, `genre` TEXT, `year` INTEGER, `song_count` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `cover_art` TEXT, `created_at` INTEGER, `remote_play_count` INTEGER NOT NULL, `starred_at` INTEGER, `rating` INTEGER NOT NULL, `search_key` TEXT NOT NULL, `section_key` TEXT NOT NULL, `sort_key` TEXT NOT NULL, `artist_sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artistId",
+            "columnName": "artist_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "artistName",
+            "columnName": "artist_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "genre",
+            "columnName": "genre",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "songCount",
+            "columnName": "song_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "remotePlayCount",
+            "columnName": "remote_play_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "starredAt",
+            "columnName": "starred_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "section_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artistSortKey",
+            "columnName": "artist_sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_album_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_album_account_id_artist_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "artist_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_account_id_artist_id` ON `${TABLE_NAME}` (`account_id`, `artist_id`)"
+          },
+          {
+            "name": "index_album_account_id_genre",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "genre"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_account_id_genre` ON `${TABLE_NAME}` (`account_id`, `genre`)"
+          },
+          {
+            "name": "index_album_account_id_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_account_id_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `sort_key`, `server_id`)"
+          },
+          {
+            "name": "index_album_account_id_section_key_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "section_key",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_account_id_section_key_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `section_key`, `sort_key`, `server_id`)"
+          },
+          {
+            "name": "index_album_account_id_artist_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "artist_sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_account_id_artist_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `artist_sort_key`, `server_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "song",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `title` TEXT NOT NULL, `album_id` TEXT, `album_name` TEXT NOT NULL, `artist_id` TEXT, `artist_name` TEXT NOT NULL, `track` INTEGER, `disc` INTEGER, `year` INTEGER, `genre` TEXT, `duration` INTEGER NOT NULL, `bitrate` INTEGER, `content_type` TEXT, `size` INTEGER, `cover_art` TEXT, `suffix` TEXT, `path` TEXT NOT NULL, `is_video` INTEGER NOT NULL, `type` TEXT, `album_artist_id` TEXT, `stream_url` TEXT, `created_at` INTEGER, `starred_at` INTEGER, `rating` INTEGER, `replay_gain_track_gain` REAL, `replay_gain_track_peak` REAL, `replay_gain_album_gain` REAL, `replay_gain_album_peak` REAL, `search_key` TEXT NOT NULL, `section_key` TEXT NOT NULL, `sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "albumId",
+            "columnName": "album_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "albumName",
+            "columnName": "album_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artistId",
+            "columnName": "artist_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "artistName",
+            "columnName": "artist_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "track",
+            "columnName": "track",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "disc",
+            "columnName": "disc",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "genre",
+            "columnName": "genre",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bitrate",
+            "columnName": "bitrate",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "contentType",
+            "columnName": "content_type",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "size",
+            "columnName": "size",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "suffix",
+            "columnName": "suffix",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "path",
+            "columnName": "path",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isVideo",
+            "columnName": "is_video",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "albumArtistId",
+            "columnName": "album_artist_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "streamUrl",
+            "columnName": "stream_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "starredAt",
+            "columnName": "starred_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "replayGainTrackGain",
+            "columnName": "replay_gain_track_gain",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "replayGainTrackPeak",
+            "columnName": "replay_gain_track_peak",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "replayGainAlbumGain",
+            "columnName": "replay_gain_album_gain",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "replayGainAlbumPeak",
+            "columnName": "replay_gain_album_peak",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "section_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_song_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_song_account_id_album_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "album_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_account_id_album_id` ON `${TABLE_NAME}` (`account_id`, `album_id`)"
+          },
+          {
+            "name": "index_song_account_id_artist_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "artist_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_account_id_artist_id` ON `${TABLE_NAME}` (`account_id`, `artist_id`)"
+          },
+          {
+            "name": "index_song_account_id_genre",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "genre"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_account_id_genre` ON `${TABLE_NAME}` (`account_id`, `genre`)"
+          },
+          {
+            "name": "index_song_account_id_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_account_id_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `sort_key`, `server_id`)"
+          },
+          {
+            "name": "index_song_account_id_section_key_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "section_key",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_account_id_section_key_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `section_key`, `sort_key`, `server_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "genre",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `name` TEXT NOT NULL, `album_count` INTEGER NOT NULL, `song_count` INTEGER NOT NULL, `search_key` TEXT NOT NULL, `section_key` TEXT NOT NULL, `sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `name`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "albumCount",
+            "columnName": "album_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songCount",
+            "columnName": "song_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "section_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "name"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_genre_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_genre_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_genre_account_id_sort_key_name",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "sort_key",
+              "name"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_genre_account_id_sort_key_name` ON `${TABLE_NAME}` (`account_id`, `sort_key`, `name`)"
+          },
+          {
+            "name": "index_genre_account_id_section_key_sort_key_name",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "section_key",
+              "sort_key",
+              "name"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_genre_account_id_section_key_sort_key_name` ON `${TABLE_NAME}` (`account_id`, `section_key`, `sort_key`, `name`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "song_local_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `song_id` TEXT NOT NULL, `cache_path` TEXT, `play_progress_ms` INTEGER, `play_progress_updated_at` INTEGER, `play_count` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`account_id`, `song_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songId",
+            "columnName": "song_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cachePath",
+            "columnName": "cache_path",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "playProgressMs",
+            "columnName": "play_progress_ms",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "playProgressUpdatedAt",
+            "columnName": "play_progress_updated_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "playCount",
+            "columnName": "play_count",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "song_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_song_local_state_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_local_state_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "album_sync_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `album_id` TEXT NOT NULL, `is_songs_synced` INTEGER NOT NULL DEFAULT 0, `newest_index` INTEGER NOT NULL DEFAULT 0, `recent_index` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`account_id`, `album_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "albumId",
+            "columnName": "album_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isSongsSynced",
+            "columnName": "is_songs_synced",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "newestIndex",
+            "columnName": "newest_index",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "recentIndex",
+            "columnName": "recent_index",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "album_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_album_sync_state_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_sync_state_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_album_sync_state_account_id_newest_index",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "newest_index"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_sync_state_account_id_newest_index` ON `${TABLE_NAME}` (`account_id`, `newest_index`)"
+          },
+          {
+            "name": "index_album_sync_state_account_id_recent_index",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "recent_index"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_sync_state_account_id_recent_index` ON `${TABLE_NAME}` (`account_id`, `recent_index`)"
+          },
+          {
+            "name": "index_album_sync_state_account_id_is_songs_synced",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "is_songs_synced"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_album_sync_state_account_id_is_songs_synced` ON `${TABLE_NAME}` (`account_id`, `is_songs_synced`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "playlist",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `name` TEXT NOT NULL, `comment` TEXT, `owner` TEXT, `is_public` INTEGER NOT NULL, `song_count` INTEGER NOT NULL, `duration` INTEGER NOT NULL, `cover_art` TEXT, `created_at` INTEGER, `changed_at` INTEGER, `search_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comment",
+            "columnName": "comment",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "owner",
+            "columnName": "owner",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isPublic",
+            "columnName": "is_public",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songCount",
+            "columnName": "song_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "created_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "changedAt",
+            "columnName": "changed_at",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_song",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `playlist_id` TEXT NOT NULL, `position` INTEGER NOT NULL, `song_id` TEXT NOT NULL, PRIMARY KEY(`account_id`, `playlist_id`, `position`), FOREIGN KEY(`account_id`, `playlist_id`) REFERENCES `playlist`(`account_id`, `server_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playlistId",
+            "columnName": "playlist_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songId",
+            "columnName": "song_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "playlist_id",
+            "position"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_song_account_id_playlist_id_song_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "playlist_id",
+              "song_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_song_account_id_playlist_id_song_id` ON `${TABLE_NAME}` (`account_id`, `playlist_id`, `song_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "playlist",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id",
+              "playlist_id"
+            ],
+            "referencedColumns": [
+              "account_id",
+              "server_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "playlist_local_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `playlist_id` TEXT NOT NULL, `last_played` INTEGER, PRIMARY KEY(`account_id`, `playlist_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playlistId",
+            "columnName": "playlist_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastPlayed",
+            "columnName": "last_played",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "playlist_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_playlist_local_state_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_playlist_local_state_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "radio",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `name` TEXT NOT NULL, `stream_url` TEXT NOT NULL, `home_page_url` TEXT, `cover_art` TEXT, `search_key` TEXT NOT NULL, `section_key` TEXT NOT NULL, `sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamUrl",
+            "columnName": "stream_url",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "homePageUrl",
+            "columnName": "home_page_url",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sectionKey",
+            "columnName": "section_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_radio_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_radio_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_radio_account_id_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_radio_account_id_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `sort_key`, `server_id`)"
+          },
+          {
+            "name": "index_radio_account_id_section_key_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "section_key",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_radio_account_id_section_key_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `section_key`, `sort_key`, `server_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "podcast",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `cover_art` TEXT, `remote_status` INTEGER NOT NULL, `episode_count` INTEGER NOT NULL, `search_key` TEXT NOT NULL, `sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "remoteStatus",
+            "columnName": "remote_status",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "episodeCount",
+            "columnName": "episode_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "searchKey",
+            "columnName": "search_key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_podcast_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_podcast_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_podcast_account_id_sort_key_server_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "sort_key",
+              "server_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_podcast_account_id_sort_key_server_id` ON `${TABLE_NAME}` (`account_id`, `sort_key`, `server_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "podcast_episode",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `title` TEXT NOT NULL, `description` TEXT, `publish_date` INTEGER NOT NULL, `status` INTEGER NOT NULL, `stream_id` TEXT, `duration` INTEGER NOT NULL, `cover_art` TEXT, `podcast_id` TEXT, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`account_id`, `podcast_id`) REFERENCES `podcast`(`account_id`, `server_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "publishDate",
+            "columnName": "publish_date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "streamId",
+            "columnName": "stream_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "podcastId",
+            "columnName": "podcast_id",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_podcast_episode_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_podcast_episode_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_podcast_episode_account_id_podcast_id_publish_date",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "podcast_id",
+              "publish_date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_podcast_episode_account_id_podcast_id_publish_date` ON `${TABLE_NAME}` (`account_id`, `podcast_id`, `publish_date`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          },
+          {
+            "table": "podcast",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id",
+              "podcast_id"
+            ],
+            "referencedColumns": [
+              "account_id",
+              "server_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "podcast_episode_local_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `episode_id` TEXT NOT NULL, `cache_path` TEXT, `play_progress_ms` INTEGER, `play_progress_updated_at` INTEGER, PRIMARY KEY(`account_id`, `episode_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "episodeId",
+            "columnName": "episode_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cachePath",
+            "columnName": "cache_path",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "playProgressMs",
+            "columnName": "play_progress_ms",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "playProgressUpdatedAt",
+            "columnName": "play_progress_updated_at",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "episode_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_podcast_episode_local_state_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_podcast_episode_local_state_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "music_folder",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_music_folder_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_music_folder_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "directory",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `server_id` TEXT NOT NULL, `name` TEXT NOT NULL, `cover_art` TEXT, `parent_id` TEXT, `music_folder_id` TEXT, `sort_key` TEXT NOT NULL, PRIMARY KEY(`account_id`, `server_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serverId",
+            "columnName": "server_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "parentId",
+            "columnName": "parent_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "musicFolderId",
+            "columnName": "music_folder_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sortKey",
+            "columnName": "sort_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "server_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_directory_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_directory_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_directory_account_id_parent_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "parent_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_directory_account_id_parent_id` ON `${TABLE_NAME}` (`account_id`, `parent_id`)"
+          },
+          {
+            "name": "index_directory_account_id_music_folder_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "music_folder_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_directory_account_id_music_folder_id` ON `${TABLE_NAME}` (`account_id`, `music_folder_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "song_directory",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `song_id` TEXT NOT NULL, `directory_id` TEXT NOT NULL, PRIMARY KEY(`account_id`, `song_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songId",
+            "columnName": "song_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "directoryId",
+            "columnName": "directory_id",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "song_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_song_directory_account_id_directory_id",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "directory_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_song_directory_account_id_directory_id` ON `${TABLE_NAME}` (`account_id`, `directory_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "download_entry",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `entity_type` TEXT NOT NULL DEFAULT 'SONG', `song_id` TEXT NOT NULL, `creation_date` INTEGER NOT NULL, `finish_date` INTEGER, `error_date` INTEGER, `updated_at` INTEGER NOT NULL, PRIMARY KEY(`account_id`, `entity_type`, `song_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "entityType",
+            "columnName": "entity_type",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'SONG'"
+          },
+          {
+            "fieldPath": "songId",
+            "columnName": "song_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creationDate",
+            "columnName": "creation_date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "finishDate",
+            "columnName": "finish_date",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "errorDate",
+            "columnName": "error_date",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "entity_type",
+            "song_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_download_entry_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_download_entry_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_download_entry_account_id_creation_date",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "creation_date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_download_entry_account_id_creation_date` ON `${TABLE_NAME}` (`account_id`, `creation_date`)"
+          },
+          {
+            "name": "index_download_entry_account_id_finish_date_error_date",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "finish_date",
+              "error_date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_download_entry_account_id_finish_date_error_date` ON `${TABLE_NAME}` (`account_id`, `finish_date`, `error_date`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "search_history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`account_id` TEXT NOT NULL, `type` TEXT NOT NULL, `entity_id` TEXT NOT NULL, `name` TEXT NOT NULL, `subtitle` TEXT NOT NULL, `cover_art` TEXT, `searched_at` INTEGER NOT NULL, PRIMARY KEY(`account_id`, `type`, `entity_id`), FOREIGN KEY(`account_id`) REFERENCES `account_scope`(`account_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "entityId",
+            "columnName": "entity_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subtitle",
+            "columnName": "subtitle",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "coverArt",
+            "columnName": "cover_art",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "searchedAt",
+            "columnName": "searched_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "account_id",
+            "type",
+            "entity_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_search_history_account_id",
+            "unique": false,
+            "columnNames": [
+              "account_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_search_history_account_id` ON `${TABLE_NAME}` (`account_id`)"
+          },
+          {
+            "name": "index_search_history_account_id_searched_at",
+            "unique": false,
+            "columnNames": [
+              "account_id",
+              "searched_at"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_search_history_account_id_searched_at` ON `${TABLE_NAME}` (`account_id`, `searched_at`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "account_scope",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "account_id"
+            ],
+            "referencedColumns": [
+              "account_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "event_log",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `creation_date` INTEGER NOT NULL, `message` TEXT NOT NULL, `status_code` INTEGER NOT NULL, `type` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creationDate",
+            "columnName": "creation_date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statusCode",
+            "columnName": "status_code",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_event_log_creation_date",
+            "unique": false,
+            "columnNames": [
+              "creation_date"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_event_log_creation_date` ON `${TABLE_NAME}` (`creation_date`)"
+          }
+        ]
+      },
+      {
+        "tableName": "playback_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `music_index` INTEGER NOT NULL, `play_progress` INTEGER NOT NULL, `play_duration` INTEGER NOT NULL, `context_type` TEXT NOT NULL, `context_id` TEXT, `context_name` TEXT NOT NULL, `player_mode` TEXT NOT NULL, `was_playing` INTEGER NOT NULL, `is_user_queue_playing` INTEGER NOT NULL, `current_context_index` INTEGER NOT NULL, `repeat_setting` INTEGER NOT NULL DEFAULT 0, `shuffle_setting` INTEGER NOT NULL DEFAULT 0, `podcast_index` INTEGER NOT NULL DEFAULT 0, `play_source` TEXT, `display_mode` TEXT NOT NULL, `saved_at` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "musicIndex",
+            "columnName": "music_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playProgress",
+            "columnName": "play_progress",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playDuration",
+            "columnName": "play_duration",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contextType",
+            "columnName": "context_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contextId",
+            "columnName": "context_id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "contextName",
+            "columnName": "context_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playerMode",
+            "columnName": "player_mode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wasPlaying",
+            "columnName": "was_playing",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isUserQueuePlaying",
+            "columnName": "is_user_queue_playing",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentContextIndex",
+            "columnName": "current_context_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "repeatSetting",
+            "columnName": "repeat_setting",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "shuffleSetting",
+            "columnName": "shuffle_setting",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "podcastIndex",
+            "columnName": "podcast_index",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "playSource",
+            "columnName": "play_source",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "displayMode",
+            "columnName": "display_mode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "savedAt",
+            "columnName": "saved_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "playback_queue_item",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`queue_type` TEXT NOT NULL, `position` INTEGER NOT NULL, `item_type` TEXT NOT NULL, `account_id` TEXT NOT NULL, `entity_id` TEXT NOT NULL, `fallback_title` TEXT, `fallback_artist` TEXT, `fallback_album` TEXT, `fallback_duration` INTEGER, `fallback_replay_gain_track_gain` REAL, `fallback_replay_gain_track_peak` REAL, `fallback_replay_gain_album_gain` REAL, `fallback_replay_gain_album_peak` REAL, PRIMARY KEY(`queue_type`, `position`))",
+        "fields": [
+          {
+            "fieldPath": "queueType",
+            "columnName": "queue_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemType",
+            "columnName": "item_type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "accountId",
+            "columnName": "account_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "entityId",
+            "columnName": "entity_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fallbackTitle",
+            "columnName": "fallback_title",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fallbackArtist",
+            "columnName": "fallback_artist",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fallbackAlbum",
+            "columnName": "fallback_album",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fallbackDuration",
+            "columnName": "fallback_duration",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "fallbackReplayGainTrackGain",
+            "columnName": "fallback_replay_gain_track_gain",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "fallbackReplayGainTrackPeak",
+            "columnName": "fallback_replay_gain_track_peak",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "fallbackReplayGainAlbumGain",
+            "columnName": "fallback_replay_gain_album_gain",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "fallbackReplayGainAlbumPeak",
+            "columnName": "fallback_replay_gain_album_peak",
+            "affinity": "REAL"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "queue_type",
+            "position"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5c6b91dacbd77d170552f48d5584616b')"
+    ]
+  }
+}

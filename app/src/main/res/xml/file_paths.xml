@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileProvider 共享路径（Phase 5.5 支持邮件附件 AmperfyLog.json） -->
+<paths>
+    <cache-path
+        name="support"
+        path="support/" />
+</paths>
