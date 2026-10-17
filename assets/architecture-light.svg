@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1232" width="1440" height="1232" font-family="-apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif" role="img" aria-label="Amperfy4Android architecture: Compose UI, ViewModels, AppDelegate core, per-account repositories and services, player and audio chain, local Room data, remote Subsonic and Ampache APIs, servers.">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6e7781"/></marker></defs>
+<rect width="1440" height="1232" fill="#ffffff"/>
+<rect x="32" y="24" width="1376" height="132" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="32" y="34" width="4" height="112" rx="2" fill="#8250df"/>
+<text x="50" y="48" font-size="13" font-weight="700" fill="#8250df" letter-spacing="0.6">UI LAYER · JETPACK COMPOSE</text>
+<rect x="50.0" y="60" width="317.0" height="76" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="50.0" y="60" width="317.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="208.5" y="87.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Screens</text>
+<text x="208.5" y="102.5" font-size="11" text-anchor="middle" fill="#59636e">ui/screens: Home, Library, Search,</text>
+<text x="208.5" y="117.5" font-size="11" text-anchor="middle" fill="#59636e">detail screens, Player, Settings</text>
+<rect x="391.0" y="60" width="317.0" height="76" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="391.0" y="60" width="317.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="549.5" y="87.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Reusable components</text>
+<text x="549.5" y="102.5" font-size="11" text-anchor="middle" fill="#59636e">list rows, swipe actions, context menus,</text>
+<text x="549.5" y="117.5" font-size="11" text-anchor="middle" fill="#59636e">search bar reveal, iOS-style sheets</text>
+<rect x="732.0" y="60" width="317.0" height="76" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="732.0" y="60" width="317.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="890.5" y="87.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Theme &amp; icons</text>
+<text x="890.5" y="102.5" font-size="11" text-anchor="middle" fill="#59636e">iOS semantic colors, per-account theme color,</text>
+<text x="890.5" y="117.5" font-size="11" text-anchor="middle" fill="#59636e">AmperfyIcons (Cupertino glyphs + custom paths)</text>
+<rect x="1073.0" y="60" width="317.0" height="76" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="1073.0" y="60" width="317.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="1231.5" y="87.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Coil ImageLoader</text>
+<text x="1231.5" y="102.5" font-size="11" text-anchor="middle" fill="#59636e">cover art over HTTPS: artwork policy,</text>
+<text x="1231.5" y="117.5" font-size="11" text-anchor="middle" fill="#59636e">auth-stripped cache keys, Ampache token refresh</text>
+<rect x="32" y="180" width="1376" height="92" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="32" y="190" width="4" height="72" rx="2" fill="#0969da"/>
+<text x="50" y="204" font-size="13" font-weight="700" fill="#0969da" letter-spacing="0.6">VIEWMODEL LAYER</text>
+<rect x="391.0" y="216" width="658.0" height="40" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="391.0" y="216" width="658.0" height="3" rx="1.5" fill="#0969da"/>
+<text x="720.0" y="233.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">@HiltViewModel ViewModels</text>
+<text x="720.0" y="248.0" font-size="11" text-anchor="middle" fill="#59636e">thin: inject AppDelegate only, expose StateFlow to the screens</text>
+<rect x="32" y="296" width="1376" height="204" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="32" y="306" width="4" height="184" rx="2" fill="#bf8700"/>
+<text x="50" y="320" font-size="13" font-weight="700" fill="#bf8700" letter-spacing="0.6">CORE · CORE/</text>
+<rect x="391.0" y="332" width="658.0" height="56" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="391.0" y="332" width="658.0" height="3" rx="1.5" fill="#bf8700"/>
+<text x="720.0" y="357.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">AppDelegate  (singleton aggregator, mirrors the iOS AppDelegate)</text>
+<text x="720.0" y="372.0" font-size="11" text-anchor="middle" fill="#59636e">library · playlists · podcasts · directories · search · mediaUrls · player · downloader · settings · credentials · accounts · eventLogger</text>
+<rect x="50.0" y="412" width="317.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="50.0" y="412" width="317.0" height="3" rx="1.5" fill="#bf8700"/>
+<text x="208.5" y="433.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">AccountManager</text>
+<text x="208.5" y="448.5" font-size="11" text-anchor="middle" fill="#59636e">login · switch · logout</text>
+<text x="208.5" y="463.5" font-size="11" text-anchor="middle" fill="#59636e">(logout cascades a library wipe)</text>
+<rect x="391.0" y="412" width="317.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="391.0" y="412" width="317.0" height="3" rx="1.5" fill="#bf8700"/>
+<text x="549.5" y="433.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">AccountComponentsRegistry</text>
+<text x="549.5" y="448.5" font-size="11" text-anchor="middle" fill="#59636e">one component set per account;</text>
+<text x="549.5" y="463.5" font-size="11" text-anchor="middle" fill="#59636e">Subsonic or Ampache family by backendApi</text>
+<rect x="732.0" y="412" width="317.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="732.0" y="412" width="317.0" height="3" rx="1.5" fill="#bf8700"/>
+<text x="890.5" y="433.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">EventLogger</text>
+<text x="890.5" y="448.5" font-size="11" text-anchor="middle" fill="#59636e">API / download errors → event_log table,</text>
+<text x="890.5" y="463.5" font-size="11" text-anchor="middle" fill="#59636e">exported from the Support screen</text>
+<rect x="1073.0" y="412" width="317.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="1073.0" y="412" width="317.0" height="3" rx="1.5" fill="#bf8700"/>
+<text x="1231.5" y="433.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">NetworkMonitor</text>
+<text x="1231.5" y="448.5" font-size="11" text-anchor="middle" fill="#59636e">connectivity guard for sync,</text>
+<text x="1231.5" y="463.5" font-size="11" text-anchor="middle" fill="#59636e">Wi-Fi / cellular bitrate choice</text>
+<rect x="72" y="524" width="812" height="324" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="72" y="534" width="4" height="304" rx="2" fill="#1a7f37"/>
+<text x="90" y="548" font-size="13" font-weight="700" fill="#1a7f37" letter-spacing="0.6">PER-ACCOUNT COMPONENTS · ONE SET PER LOGGED-IN ACCOUNT</text>
+<rect x="908" y="524" width="500" height="324" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="908" y="534" width="4" height="304" rx="2" fill="#cf222e"/>
+<text x="926" y="548" font-size="13" font-weight="700" fill="#cf222e" letter-spacing="0.6">PLAYER · PLAYER/</text>
+<rect x="90.0" y="560" width="436.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="90.0" y="560" width="436.0" height="3" rx="1.5" fill="#1a7f37"/>
+<text x="308.0" y="581.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">MusicRepository facade</text>
+<text x="308.0" y="596.5" font-size="11" text-anchor="middle" fill="#59636e">Library · Playlist · Podcast · Directory · Search · MediaUrl</text>
+<text x="308.0" y="611.5" font-size="11" text-anchor="middle" fill="#59636e">assembly only — business code uses the narrow interfaces</text>
+<rect x="90.0" y="676" width="236.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="90.0" y="676" width="236.0" height="3" rx="1.5" fill="#1a7f37"/>
+<text x="208.0" y="697.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Subsonic implementation family</text>
+<text x="208.0" y="712.5" font-size="11" text-anchor="middle" fill="#59636e">data/repository</text>
+<text x="208.0" y="727.5" font-size="11" text-anchor="middle" fill="#59636e">OpenSubsonic extensions (lyrics)</text>
+<rect x="350.0" y="676" width="236.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="350.0" y="676" width="236.0" height="3" rx="1.5" fill="#1a7f37"/>
+<text x="468.0" y="697.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Ampache implementation family</text>
+<text x="468.0" y="712.5" font-size="11" text-anchor="middle" fill="#59636e">data/repository/ampache</text>
+<text x="468.0" y="727.5" font-size="11" text-anchor="middle" fill="#59636e">same six interfaces, XML + session auth</text>
+<rect x="630.0" y="560" width="236.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="630.0" y="560" width="236.0" height="3" rx="1.5" fill="#1a7f37"/>
+<text x="748.0" y="581.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">DownloadManager</text>
+<text x="748.0" y="596.5" font-size="11" text-anchor="middle" fill="#59636e">4 parallel downloads, persisted queue,</text>
+<text x="748.0" y="611.5" font-size="11" text-anchor="middle" fill="#59636e">resume on launch, writes the file cache</text>
+<rect x="630.0" y="648" width="236.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="630.0" y="648" width="236.0" height="3" rx="1.5" fill="#1a7f37"/>
+<text x="748.0" y="669.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">ScrobbleSyncer</text>
+<text x="748.0" y="684.5" font-size="11" text-anchor="middle" fill="#59636e">nowPlaying + listen-threshold scrobble,</text>
+<text x="748.0" y="699.5" font-size="11" text-anchor="middle" fill="#59636e">offline retry queue</text>
+<rect x="630.0" y="736" width="236.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="630.0" y="736" width="236.0" height="3" rx="1.5" fill="#1a7f37"/>
+<text x="748.0" y="757.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">BackgroundLibrarySyncer</text>
+<text x="748.0" y="772.5" font-size="11" text-anchor="middle" fill="#59636e">progressive album-song fill,</text>
+<text x="748.0" y="787.5" font-size="11" text-anchor="middle" fill="#59636e">latest podcast episode auto-cache</text>
+<rect x="926.0" y="560" width="464.0" height="56" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="926.0" y="560" width="464.0" height="3" rx="1.5" fill="#cf222e"/>
+<text x="1158.0" y="577.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">PlayerManager</text>
+<text x="1158.0" y="592.5" font-size="11" text-anchor="middle" fill="#59636e">context / user / podcast queues, repeat · shuffle,</text>
+<text x="1158.0" y="607.5" font-size="11" text-anchor="middle" fill="#59636e">playback rate, sleep timer, manual playback</text>
+<rect x="926.0" y="640" width="408.0" height="40" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="926.0" y="640" width="408.0" height="3" rx="1.5" fill="#cf222e"/>
+<text x="1130.0" y="657.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">PlaybackStateManager</text>
+<text x="1130.0" y="672.0" font-size="11" text-anchor="middle" fill="#59636e">persists state + five queue sections</text>
+<rect x="926.0" y="704" width="464.0" height="40" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="926.0" y="704" width="464.0" height="3" rx="1.5" fill="#cf222e"/>
+<text x="1158.0" y="721.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">PlaybackService</text>
+<text x="1158.0" y="736.0" font-size="11" text-anchor="middle" fill="#59636e">MediaSessionService, foreground notification</text>
+<rect x="926.0" y="760" width="464.0" height="40" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="926.0" y="760" width="464.0" height="3" rx="1.5" fill="#cf222e"/>
+<text x="1158.0" y="777.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Media3 ExoPlayer</text>
+<text x="1158.0" y="792.0" font-size="11" text-anchor="middle" fill="#59636e">ResolvingDataSource refreshes Ampache tokens on load</text>
+<rect x="926.0" y="816" width="464.0" height="40" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="926.0" y="816" width="464.0" height="3" rx="1.5" fill="#cf222e"/>
+<text x="1158.0" y="833.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Audio chain (PCM, offload disabled)</text>
+<text x="1158.0" y="848.0" font-size="11" text-anchor="middle" fill="#59636e">Equalizer → Gain (ReplayGain) → Visualizer tap</text>
+<rect x="32" y="900" width="676" height="236" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="32" y="910" width="4" height="216" rx="2" fill="#0969da"/>
+<text x="50" y="924" font-size="13" font-weight="700" fill="#0969da" letter-spacing="0.6">LOCAL DATA</text>
+<rect x="732" y="900" width="676" height="236" rx="10" fill="#f6f8fa" stroke="#d0d7de"/>
+<rect x="732" y="910" width="4" height="216" rx="2" fill="#8250df"/>
+<text x="750" y="924" font-size="13" font-weight="700" fill="#8250df" letter-spacing="0.6">REMOTE DATA</text>
+<rect x="50.0" y="936" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="50.0" y="936" width="200.0" height="3" rx="1.5" fill="#0969da"/>
+<text x="150.0" y="957.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Store boundary interfaces</text>
+<text x="150.0" y="972.5" font-size="11" text-anchor="middle" fill="#59636e">data/local/store — domain models</text>
+<text x="150.0" y="987.5" font-size="11" text-anchor="middle" fill="#59636e">in and out, no Room types leak</text>
+<rect x="270.0" y="936" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="270.0" y="936" width="200.0" height="3" rx="1.5" fill="#0969da"/>
+<text x="370.0" y="957.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Settings stores</text>
+<text x="370.0" y="972.5" font-size="11" text-anchor="middle" fill="#59636e">SettingsManager (StateFlow) +</text>
+<text x="370.0" y="987.5" font-size="11" text-anchor="middle" fill="#59636e">AccountSettingsStore (per account)</text>
+<rect x="490.0" y="936" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="490.0" y="936" width="200.0" height="3" rx="1.5" fill="#0969da"/>
+<text x="590.0" y="957.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">File cache</text>
+<text x="590.0" y="972.5" font-size="11" text-anchor="middle" fill="#59636e">songs · podcast episodes · lyrics,</text>
+<text x="590.0" y="987.5" font-size="11" text-anchor="middle" fill="#59636e">per-account directories</text>
+<rect x="50.0" y="1044" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="50.0" y="1044" width="200.0" height="3" rx="1.5" fill="#0969da"/>
+<text x="150.0" y="1065.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">CredentialsManager</text>
+<text x="150.0" y="1080.5" font-size="11" text-anchor="middle" fill="#59636e">EncryptedSharedPreferences,</text>
+<text x="150.0" y="1095.5" font-size="11" text-anchor="middle" fill="#59636e">per-account namespace, backend type</text>
+<rect x="270.0" y="1044" width="420.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="270.0" y="1044" width="420.0" height="3" rx="1.5" fill="#0969da"/>
+<text x="480.0" y="1065.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Room · AmperfyDatabase</text>
+<text x="480.0" y="1080.5" font-size="11" text-anchor="middle" fill="#59636e">22 tables, account_scope tenant root, (account_id, server_id) keys,</text>
+<text x="480.0" y="1095.5" font-size="11" text-anchor="middle" fill="#59636e">ON DELETE CASCADE on logout, explicit migrations only</text>
+<rect x="750.0" y="936" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="750.0" y="936" width="200.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="850.0" y="957.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Retrofit SubsonicApi</text>
+<text x="850.0" y="972.5" font-size="11" text-anchor="middle" fill="#59636e">AccountBaseUrlInterceptor +</text>
+<text x="850.0" y="987.5" font-size="11" text-anchor="middle" fill="#59636e">SubsonicAuthInterceptor (MD5 token)</text>
+<rect x="970.0" y="936" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="970.0" y="936" width="200.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="1070.0" y="957.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">SubsonicUrlBuilder</text>
+<text x="1070.0" y="972.5" font-size="11" text-anchor="middle" fill="#59636e">stream / download / cover URLs,</text>
+<text x="1070.0" y="987.5" font-size="11" text-anchor="middle" fill="#59636e">fresh salt per URL</text>
+<rect x="1190.0" y="936" width="200.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="1190.0" y="936" width="200.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="1290.0" y="957.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">AmpacheApi + SAX parsers</text>
+<text x="1290.0" y="972.5" font-size="11" text-anchor="middle" fill="#59636e">AmpacheAuthSession: handshake,</text>
+<text x="1290.0" y="987.5" font-size="11" text-anchor="middle" fill="#59636e">token renewed before expiry</text>
+<rect x="850.0" y="1044" width="420.0" height="64" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="850.0" y="1044" width="420.0" height="3" rx="1.5" fill="#8250df"/>
+<text x="1060.0" y="1065.5" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Shared OkHttpClient</text>
+<text x="1060.0" y="1080.5" font-size="11" text-anchor="middle" fill="#59636e">connection pool, timeouts,</text>
+<text x="1060.0" y="1095.5" font-size="11" text-anchor="middle" fill="#59636e">DetailedLoggingInterceptor (auth params redacted)</text>
+<rect x="750.0" y="1164" width="640.0" height="48" rx="8" fill="#ffffff" stroke="#afb8c1"/>
+<rect x="750.0" y="1164" width="640.0" height="3" rx="1.5" fill="#57606a"/>
+<text x="1070.0" y="1185.0" font-size="13" font-weight="600" text-anchor="middle" fill="#1f2328">Subsonic / OpenSubsonic servers  ·  Ampache servers (API 5, XML)</text>
+<text x="1070.0" y="1200.0" font-size="11" text-anchor="middle" fill="#59636e">Navidrome, Gonic, Airsonic, Subsonic, Ampache, …</text>
+<path d="M208.5,136.0 L208.5,196.0 L555.5,196.0 L555.5,216.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="382.0" y="200.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">collectAsState()</text>
+<path d="M720.0,256.0 L720.0,332.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="720.0" y="298.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">constructor injection</text>
+<path d="M720.0,388.0 L720.0,400.0 L208.5,400.0 L208.5,412.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M720.0,388.0 L720.0,400.0 L549.5,400.0 L549.5,412.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="634.8" y="404.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">active account</text>
+<path d="M720.0,388.0 L720.0,400.0 L890.5,400.0 L890.5,412.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M1049.0,360.0 L1061.0,360.0 L1061.0,588.0 L926.0,588.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1061.0" y="504.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">player</text>
+<path d="M549.5,476.0 L549.5,512.0 L308.0,512.0 L308.0,560.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="428.8" y="516.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">builds</text>
+<path d="M549.5,476.0 L549.5,512.0 L748.0,512.0 L748.0,560.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="648.8" y="516.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">builds the services</text>
+<path d="M199.0,624.0 L199.0,650.0 L208.0,650.0 L208.0,676.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="203.5" y="654.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">Subsonic account</text>
+<path d="M417.0,624.0 L417.0,650.0 L468.0,650.0 L468.0,676.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="442.5" y="654.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">Ampache account</text>
+<path d="M630.0,592.0 L614.0,592.0 L614.0,576.0 L526.0,576.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="572.0" y="571.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">mediaUrls</text>
+<path d="M630.0,680.0 L614.0,680.0 L614.0,595.2 L526.0,595.2" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="572.0" y="590.2" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">library</text>
+<path d="M630.0,768.0 L614.0,768.0 L614.0,614.4 L526.0,614.4" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="572.0" y="609.4" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">library · podcasts</text>
+<path d="M1088.4,616.0 L1088.4,640.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1088.4" y="632.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">persists</text>
+<path d="M1357.5,616.0 L1357.5,704.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1349.5" y="664.0" font-size="11" text-anchor="end" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">MediaController</text>
+<path d="M1158.0,744.0 L1158.0,760.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M1158.0,800.0 L1158.0,816.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1158.0" y="812.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">PCM</text>
+<path d="M1390.0,780.0 L1400.0,780.0 L1400.0,1148.0 L1364.4,1148.0 L1364.4,1164.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1394.0" y="1124.0" font-size="11" text-anchor="end" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">stream (or cached file)</text>
+<path d="M75.4,476.0 L75.4,508.0 L48.0,508.0 L48.0,1076.0 L50.0,1076.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="81.4" y="498.0" font-size="11" text-anchor="start" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">accounts + credentials</text>
+<path d="M214.0,740.0 L214.0,936.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="222.0" y="925.0" font-size="11" text-anchor="start" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">Room writes after the server call succeeds</text>
+<path d="M378.3,740.0 L378.3,866.0 L110.0,866.0 L110.0,936.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M278.8,740.0 L278.8,890.0 L850.0,890.0 L850.0,936.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="564.4" y="894.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">JSON</text>
+<path d="M314.2,740.0 L314.2,878.0 L1070.0,878.0 L1070.0,936.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1078.0" y="882.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">media URLs</text>
+<path d="M574.2,740.0 L574.2,866.0 L1290.0,866.0 L1290.0,936.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="932.1" y="870.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">XML</text>
+<path d="M200.0,1000.0 L200.0,1022.0 L320.4,1022.0 L320.4,1044.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="328.4" y="1026.0" font-size="11" text-anchor="start" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">DAOs</text>
+<path d="M850.0,1000.0 L850.0,1026.0 L955.0,1026.0 L955.0,1044.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M1290.0,1000.0 L1290.0,1026.0 L1165.0,1026.0 L1165.0,1044.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1227.5" y="1030.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">absolute URLs</text>
+<path d="M1060.0,1108.0 L1060.0,1136.0 L1070.0,1136.0 L1070.0,1164.0" fill="none" stroke="#6e7781" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="1065.0" y="1140.0" font-size="11" text-anchor="middle" fill="#59636e" paint-order="stroke" stroke="#ffffff" stroke-width="5" stroke-linejoin="round">HTTPS</text>
+</svg>
