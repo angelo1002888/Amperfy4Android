@@ -106,6 +106,103 @@ are documented in code comments next to the affected implementation.
 
 ### Architecture
 
+The diagram below shows every layer of the app and how a request travels from a Compose
+screen down to the server. Arrows point in the direction of dependencies.
+
+```mermaid
+flowchart TB
+    subgraph UI["UI layer (Jetpack Compose)"]
+        Screens["Screens<br/>ui/screens: Home, Library, Search,<br/>detail screens, Player, Settings"]
+        Components["Reusable components<br/>ui/components: list rows, swipe actions,<br/>context menus, search bar, sheets"]
+        Theme["Theme & icons<br/>ui/theme: iOS colors, AmperfyIcons"]
+        Coil["Coil ImageLoader<br/>artwork policy / cache key /<br/>Ampache auth interceptors"]
+        Screens --- Components
+        Screens --- Theme
+        Screens --- Coil
+    end
+
+    subgraph VM["ViewModel layer"]
+        ViewModels["@HiltViewModel ViewModels<br/>inject AppDelegate only"]
+    end
+
+    subgraph Core["Core (core/)"]
+        AppDelegate["AppDelegate (singleton aggregator)<br/>library / playlists / podcasts / directories / search /<br/>mediaUrls / player / downloader / settings /<br/>credentials / accounts / eventLogger"]
+        AccountManager["AccountManager<br/>login · switch · logout"]
+        Registry["AccountComponentsRegistry<br/>one component set per account"]
+        EventLogger["EventLogger<br/>event_log table"]
+        NetworkMonitor["NetworkMonitor<br/>sync & bitrate guards"]
+    end
+
+    subgraph Account["Per-account components"]
+        Music["MusicRepository facade<br/>Library · Playlist · Podcast ·<br/>Directory · Search · MediaUrl"]
+        SubImpl["Subsonic implementation family<br/>data/repository"]
+        AmpImpl["Ampache implementation family<br/>data/repository/ampache"]
+        subgraph Services["Background services"]
+            Downloader["DownloadManager<br/>4 parallel downloads, resume on launch"]
+            Scrobble["ScrobbleSyncer<br/>nowPlaying + offline queue"]
+            BgSync["BackgroundLibrarySyncer<br/>album songs, podcast auto-cache"]
+        end
+    end
+
+    subgraph Player["Player (player/)"]
+        PlayerManager["PlayerManager<br/>context / user / podcast queues,<br/>repeat · shuffle · rate · sleep timer"]
+        StateManager["PlaybackStateManager<br/>persists state + queues"]
+        Service["PlaybackService<br/>MediaSessionService, notification"]
+        ExoPlayer["Media3 ExoPlayer<br/>ResolvingDataSource (Ampache token refresh)"]
+        AudioChain["Audio chain (PCM)<br/>Equalizer → Gain (ReplayGain) → Visualizer tap"]
+    end
+
+    subgraph Remote["Remote data (data/remote)"]
+        SubApi["Retrofit SubsonicApi<br/>AccountBaseUrlInterceptor +<br/>SubsonicAuthInterceptor (MD5 token + salt)"]
+        UrlBuilder["SubsonicUrlBuilder<br/>stream / download / cover URLs"]
+        AmpApi["AmpacheApi + SAX parsers<br/>AmpacheAuthSession (handshake, renewal)"]
+        OkHttp["Shared OkHttpClient<br/>DetailedLoggingInterceptor (auth redacted)"]
+    end
+
+    subgraph Local["Local data (data/local)"]
+        Credentials["CredentialsManager<br/>EncryptedSharedPreferences,<br/>per-account namespace"]
+        Settings["SettingsManager /<br/>AccountSettingsStore<br/>StateFlow preferences"]
+        Stores["Store boundary interfaces<br/>data/local/store"]
+        Room["Room: AmperfyDatabase<br/>22 tables, account_scope tenant root,<br/>ON DELETE CASCADE on logout"]
+        Files["File cache<br/>songs · podcast episodes · lyrics"]
+    end
+
+    Servers["Subsonic / OpenSubsonic servers · Ampache servers"]
+
+    Screens --> ViewModels
+    ViewModels --> AppDelegate
+    AppDelegate --> AccountManager
+    AppDelegate --> Registry
+    AppDelegate --> PlayerManager
+    AccountManager --> Credentials
+    Registry --> Music
+    Registry --> Services
+    Services --> Music
+    Music --> SubImpl
+    Music --> AmpImpl
+    SubImpl --> SubApi
+    SubImpl --> UrlBuilder
+    AmpImpl --> AmpApi
+    SubImpl --> Stores
+    AmpImpl --> Stores
+    SubApi --> OkHttp
+    AmpApi --> OkHttp
+    Stores --> Room
+    Downloader --> Files
+    PlayerManager --> Service
+    PlayerManager --> StateManager
+    PlayerManager --> Music
+    StateManager --> Stores
+    Service --> ExoPlayer
+    ExoPlayer --> AudioChain
+    ExoPlayer --> Files
+    Coil --> Servers
+    ExoPlayer --> Servers
+    OkHttp --> Servers
+```
+
+Key points:
+
 - **Lightweight MVVM + AppDelegate**: ViewModels depend only on `core/AppDelegate.kt`, the
   single dependency aggregator (player, downloader, credentials, settings, event logger and
   the six repository domains), mirroring the iOS `AppDelegate`.
